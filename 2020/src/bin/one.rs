@@ -11,7 +11,7 @@ fn part1(rows: &Vec<u32>) {
 	for &i_row in rows {
 		for &j_row in rows {
 			if i_row + j_row == 2020 {
-				println!("{}", i_row * j_row);
+				println!("The result for the first part is: {}", i_row * j_row);
 				return;
 			}
 		}
@@ -23,7 +23,7 @@ fn part2(rows: &Vec<u32>) {
 		for &j_row in rows {
 			for &k_row in rows {
 				if i_row + j_row + k_row == 2020 {
-					println!("{}", i_row * j_row * k_row);
+					println!("The result for the second part is: {}", i_row * j_row * k_row);
 					return;
 				}
 			}
