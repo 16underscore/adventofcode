@@ -1,7 +1,7 @@
 use std::fs;
 
 fn main() {
-	let input: String = fs::read_to_string("one").unwrap();
+	let input: String = fs::read_to_string("2021/one").unwrap();
 	let rows: Vec<u16> = input.split('\n').map(|x| x.parse().unwrap()).collect();
 	part1(&rows);
 	part2(&rows);

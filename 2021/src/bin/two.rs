@@ -1,7 +1,7 @@
 use std::fs;
 
 fn main() {
-	let input: String = fs::read_to_string("two").unwrap();
+	let input: String = fs::read_to_string("2021/two").unwrap();
 	part1(&input);
 	part2(&input);
 }

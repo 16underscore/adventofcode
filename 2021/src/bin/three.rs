@@ -1,7 +1,7 @@
 use std::fs;
 
 fn main() {
-	let input = fs::read_to_string("three").unwrap();
+	let input = fs::read_to_string("2021/three").unwrap();
 	let rows: Vec<u32> = input
 		.split('\n')
 		.map(|x| u32::from_str_radix(x, 2).unwrap())
