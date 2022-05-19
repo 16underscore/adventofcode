@@ -2,7 +2,7 @@ use std::fs;
 
 fn main() {
 	let input = fs::read_to_string("2020/three").unwrap();
-	let rows: Vec<&str> = input.split_whitespace().collect();
+	let rows: Vec<&str> = input.split('\n').collect();
 	part1(&rows).unwrap();
 	part2(&rows).unwrap();
 }
