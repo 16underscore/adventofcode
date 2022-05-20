@@ -37,7 +37,7 @@ fn part1(instructions: &Vec<Instruction>) {
 }
 
 fn part2(instructions: &Vec<Instruction>) {
-	for i in 0..instructions.len() - 1 {
+	for i in 0..instructions.len() {
 		let replacement = match instructions.get(i).unwrap() {
 			Instruction::ACC(_) => continue,
 			Instruction::JMP(argument) => Instruction::NOP(*argument),

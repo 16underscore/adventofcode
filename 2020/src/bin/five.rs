@@ -20,7 +20,7 @@ fn part1(rows: &Vec<&str>) {
 fn part2(rows: &Vec<&str>) {
 	let mut seats = get_seats(rows);
 	seats.sort();
-	for i in 1..seats.len() - 2 {
+	for i in 1..seats.len() - 1 {
 		let previous = seats.get(i - 1).unwrap();
 		let current = seats.get(i).unwrap();
 		let next = seats.get(i + 1).unwrap();
