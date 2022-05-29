@@ -10,6 +10,7 @@ fn main() {
 	let input = fs::read_to_string("2015/six").unwrap();
 	let instructions: Vec<Instruction> = input.split('\n').map(parse).collect();
 	part1(&instructions);
+	part2(&instructions);
 }
 
 fn parse(row: &str) -> Instruction {
@@ -71,4 +72,42 @@ fn part1(instructions: &Vec<Instruction>) {
 		}
 	}
 	println!("The result for the first part is: {}", count);
+}
+
+fn part2(instructions: &Vec<Instruction>) {
+	let mut lights: [[u32; 1000]; 1000] = [[0; 1000]; 1000];
+	for instruction in instructions {
+		match instruction {
+			Instruction::ON(x0, y0, x1, y1) => {
+				for x in *x0..*x1 + 1 {
+					for y in *y0..*y1 + 1 {
+						lights[x][y] += 1;
+					}
+				}
+			}
+			Instruction::OFF(x0, y0, x1, y1) => {
+				for x in *x0..*x1 + 1 {
+					for y in *y0..*y1 + 1 {
+						if lights[x][y] > 0 {
+							lights[x][y] -= 1;
+						}
+					}
+				}
+			}
+			Instruction::TOGGLE(x0, y0, x1, y1) => {
+				for x in *x0..*x1 + 1 {
+					for y in *y0..*y1 + 1 {
+						lights[x][y] += 2;
+					}
+				}
+			}
+		}
+	}
+	let mut count: u32 = 0;
+	for i in 0..lights.len() {
+		for j in 0..lights[i].len() {
+			count += lights[i][j];
+		}
+	}
+	println!("The result for the second part is: {}", count);
 }
