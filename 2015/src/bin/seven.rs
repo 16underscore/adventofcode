@@ -16,11 +16,11 @@ fn part1(instructions: &Vec<&str>) {
 	println!("The result for the first part is: {}", signal);
 }
 
-fn recursion(map: &HashMap<&str, &str>, key: &str) -> u32 {
+fn recursion(map: &HashMap<&str, &str>, key: &str) -> u16 {
 	let value = map.get(key).expect("MAP ERROR");
 	return if value.contains("AND") {
 		let (l_value, r_value) = value.split_once(" AND ").expect("AND NONE");
-		match l_value.parse::<u32>() {
+		match l_value.parse::<u16>() {
 			Ok(l_value) => l_value & recursion(map, r_value),
 			Err(_) => recursion(map, l_value) & recursion(map, r_value),
 		}
@@ -29,17 +29,17 @@ fn recursion(map: &HashMap<&str, &str>, key: &str) -> u32 {
 		recursion(map, l_value) | recursion(map, r_value)
 	} else if value.contains("LSHIFT") {
 		let (l_value, r_value) = value.split_once(" LSHIFT ").expect("LSHIFT NONE");
-		let r_value: u32 = r_value.parse().expect("LSHIFT PARSE ERROR");
+		let r_value: u16 = r_value.parse().expect("LSHIFT PARSE ERROR");
 		recursion(map, l_value) << r_value
 	} else if value.contains("RSHIFT") {
 		let (l_value, r_value) = value.split_once(" RSHIFT ").expect("RSHIFT NONE");
-		let r_value: u32 = r_value.parse().expect("RSHIFT PARSE ERROR");
+		let r_value: u16 = r_value.parse().expect("RSHIFT PARSE ERROR");
 		recursion(map, l_value) >> r_value
 	} else if value.contains("NOT") {
 		let value = value.replace("NOT ", "");
 		!recursion(map, &value)
 	} else {
-		match value.trim().parse::<u32>() {
+		match value.parse::<u16>() {
 			Ok(value) => value,
 			Err(_) => recursion(map, value),
 		}
